@@ -140,7 +140,8 @@ class App extends Component {
             console.log(err);
             let msg= JSON.parse(err.error).error_description
             this.setState({
-                items: msg
+                items: msg,
+                customForm:false
             })
     })}
 

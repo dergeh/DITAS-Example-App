@@ -1,6 +1,6 @@
 {
   "realm": "vdc_access",
-  "auth-server-url": "http://localhost:4444/auth",
+  "auth-server-url": "http://130.149.158.186:4444/auth",
   "ssl-required": "external",
   "resource": "vdc_client",
   "public-client": true,
