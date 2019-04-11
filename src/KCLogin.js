@@ -23,7 +23,6 @@ class KCLogin extends Component {
     render() {
         if (this.state.keycloak) {
             if (this.state.authenticated) {
-               // this.props.handleToken(this.state.keycloak.idToken);
                 return (<div>{this.state.keycloak.idToken}</div>);
             } else return (<Button color="primary"
                                    onClick={this.handleLogin}
@@ -44,7 +43,7 @@ class KCLogin extends Component {
     componentDidUpdate(prevProps, prevState, snapshot) {
         if(this.state.keycloak){
             if(this.state.keycloak.idToken){
-                this.props.handleToken(this.state.keycloak.idToken)
+                this.props.handleToken(this.state.keycloak.token)
             }
         }
     }

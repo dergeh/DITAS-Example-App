@@ -15,7 +15,7 @@ class App extends Component {
             customForm: false,
             user: undefined,
             isAuthenticated: false,
-            tokenAuthority: 'http://130.149.158.186:4444/auth/realms/vdc_access/protocol/openid-connect/token',
+            tokenAuthority: 'http://localhost:4444/auth/realms/vdc_access/protocol/openid-connect/token',
             token: '',
             kcLogin: false
         }
@@ -47,6 +47,7 @@ class App extends Component {
 
     render() {
         return (
+
             <div className="App">
                 <Jumbotron>
                     <h1 className="display-3">Ditas Example App</h1>
@@ -107,7 +108,7 @@ class App extends Component {
         const body = formBody.join("&");
         const options = {
             method: 'POST',
-            uri: 'http://130.149.158.186:4444/auth/realms/vdc_access/protocol/openid-connect/token',
+            uri: 'http://localhost:4444/auth/realms/vdc_access/protocol/openid-connect/token',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
@@ -133,12 +134,14 @@ class App extends Component {
     withoutAuth=()=>{
         const rp = require('request-promise');
         const options={
-            uri: 'http://130.149.158.186:8888/ask'
+            uri: 'http://localhost:8888/ask',
+            resolveWithFullResponse: true
+
         }
 
         rp(options).then(response=> console.log(response)).catch(err => {
             console.log(err);
-            let msg= JSON.parse(err.error).error_description
+            let msg= err.error.message;
             this.setState({
                 items: msg,
                 customForm:false
@@ -168,9 +171,9 @@ class App extends Component {
             const rp = require('request-promise');
             const options = {
 
-                uri: 'http://130.149.158.186:8888/ask',
+                uri: 'http://localhost:8888/ask',
                 headers: {
-                    'Authorization': 'token ' + this.state.token
+                    'Authorization': 'bearer ' + this.state.token
                 }
             }
             rp.get(options).catch(err => {
