@@ -15,7 +15,7 @@ class App extends Component {
             customForm: false,
             user: undefined,
             isAuthenticated: false,
-            tokenAuthority: 'http://localhost:4444/auth/realms/vdc_access/protocol/openid-connect/token',
+            tokenAuthority: 'https://keycloak.ditasbench.k8s.ise-apps.de/auth/realms/vdc_access/protocol/openid-connect/token',
             token: '',
             kcLogin: false
         }
@@ -108,7 +108,7 @@ class App extends Component {
         const body = formBody.join("&");
         const options = {
             method: 'POST',
-            uri: 'http://localhost:4444/auth/realms/vdc_access/protocol/openid-connect/token',
+            uri: 'https://keycloak.ditasbench.k8s.ise-apps.de/auth/realms/vdc_access/protocol/openid-connect/token',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
@@ -134,7 +134,7 @@ class App extends Component {
     withoutAuth=()=>{
         const rp = require('request-promise');
         const options={
-            uri: 'http://localhost:8888/ask',
+            uri: 'https://vdc.ditasbench.k8s.ise-apps.de/ask',
             resolveWithFullResponse: true
 
         }
@@ -171,7 +171,7 @@ class App extends Component {
             const rp = require('request-promise');
             const options = {
 
-                uri: 'http://localhost:8888/ask',
+                uri: 'https://vdc.ditasbench.k8s.ise-apps.de/ask',
                 headers: {
                     'Authorization': 'bearer ' + this.state.token
                 }
